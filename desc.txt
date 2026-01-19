@@ -1,0 +1,182 @@
+# Car Market Visualizer (USA)
+
+Car Visualizer project based on the [MarketCheck API](https://docs.marketcheck.com/docs/get-started/api/introduction).
+
+A **portfolio-ready data analytics project** focused on aggregating vehicle listing data across the United States to analyze **pricing trends, mileage impact, and regional variance**, with optional **geo-personalized insights**.
+
+This project functions as a **pricing intelligence dashboard**, designed to help consumers understand fair market value and regional pricing dynamics.
+
+---
+
+## Refined Project Definition
+
+**Car Market Visualizer (USA)**  
+A data analytics application that aggregates vehicle listing data across the U.S. to analyze:
+
+- Pricing trends over time  
+- Mileage-adjusted pricing  
+- Regional price variance  
+- Market health indicators  
+
+Geo-personalization allows users to filter results by **city, state, or radius**, with nationwide aggregation as the default.
+
+---
+
+## Core Features (MVP)
+
+### 1. Data Ingestion (MarketCheck API)
+
+**Key endpoints:**
+
+- Listings search  
+- Historical pricing (if available per listing)  
+- Vehicle attributes (year, make, model, trim)  
+- Location (city, state, ZIP, latitude/longitude)  
+- Mileage  
+- Price  
+
+**Stored fields:**
+
+- `price`
+- `mileage`
+- `year`
+- `days_on_market`
+- `city`
+- `state`
+- `dealer_vs_private`
+- `listing_date`
+
+---
+
+### 2. Aggregated Metrics
+
+For a selected vehicle (example: *2018 Honda Accord EX-L*):
+
+#### Pricing
+- Median price (preferred over mean)
+- 25th / 75th percentile pricing
+- Price vs. mileage regression
+- Outlier detection (overpriced listings)
+
+#### Mileage
+- Median mileage by model year
+- Price depreciation per 10,000 miles
+
+#### Market Health
+- Average days on market
+- Active inventory count
+- Price dispersion (market volatility)
+
+---
+
+### 3. Visualization Layer
+
+#### Sparkline (Primary Visualization)
+
+- X-axis: Time (last 30 / 90 / 180 days)
+- Y-axis: Median price
+- Optional rolling median smoothing
+
+Additional visualizations:
+
+- Price vs. mileage scatter plot
+- Box plot by city or state
+- Price distribution histogram
+- Heat map (optional / advanced)
+
+---
+
+### 4. Geofencing & Personalization
+
+**User inputs:**
+
+- City + radius (e.g., **Austin, TX — 50 miles**)
+- State
+- Nationwide (default)
+
+**Logic:**
+
+- Filter listings using latitude/longitude + Haversine distance
+- Fallback to state or national aggregates when local data is sparse
+
+**Transparency example:**
+
+> “Based on 312 listings within 50 miles”
+
+---
+
+## Tech Stack
+
+### Backend
+- Python
+- FastAPI
+- Pandas / NumPy
+- SQL (PostgreSQL or SQLite initially)
+- Scheduled background jobs for data refresh
+
+### Frontend & Visualization
+- Streamlit (fastest MVP)
+  - Optional: Plotly Dash for advanced layouts
+- Plotly for interactive charts and sparklines
+
+### Data Storage
+- Raw listings table
+- Precomputed aggregated metrics table (for performance)
+
+---
+
+## Example User Flow
+
+1. User selects:
+   - Year: 2018  
+   - Make: Honda  
+   - Model: Accord  
+   - Radius: 50 miles  
+
+2. Application returns:
+   - Sparkline of median prices (last 90 days)
+   - Estimated fair price range
+   - Mileage-adjusted price estimate
+   - Local vs national price comparison
+
+---
+
+## Resume Bullet
+
+> Built a U.S.-wide vehicle market analytics dashboard using the MarketCheck API to aggregate and analyze pricing, mileage, and regional trends across thousands of listings. Implemented geofenced personalization, pricing distribution analysis, and time-series visualizations to estimate fair market value.
+
+---
+
+## Stretch Features
+
+- Price prediction model (linear regression or XGBoost)
+- Overpriced / underpriced listing classification
+- Comparison against KBB price ranges (manual or reference-based)
+- Price drop alerts (e.g., “5% decrease in your area”)
+- Dealer vs. private seller pricing gap analysis
+
+---
+
+## Important Notes
+
+MarketCheck API constraints:
+- Rate limits
+- Potential paywalls for historical data
+
+**Mitigation strategies:**
+- Aggressive caching
+- Daily snapshot storage
+- Positioning as a research and analytics tool, not a live scraper
+
+This approach is fully acceptable for a portfolio project.
+
+---
+
+## Next Steps
+
+Optional extensions:
+- Database schema design
+- API endpoint selection
+- UI wireframes
+- Sparkline calculation logic
+- Conversion into a **2–3 week execution plan**
