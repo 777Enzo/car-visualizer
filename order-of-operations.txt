@@ -1,0 +1,14 @@
+1 - try to pull the data from an api. via Pandas DF
+    - API reqs
+    - JSON
+    - Fields (price, mileage, year, location)
+
+
+2 - set up db
+    - tables?
+    - columns and types
+    - primary keys 
+
+
+3 - export data from local ipynb to sql server db 
+    - Writing the DataFrame to the DB (to_sql in Pandas works, or pyodbc/SQLAlchemy)
