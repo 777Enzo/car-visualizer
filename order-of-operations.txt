@@ -2,6 +2,7 @@
     - API reqs
     - JSON
     - Fields (price, mileage, year, location)
+        - 02/03/2026 - We need to chunk out the DF for analysis. This is important. 44 different fields with some of them nested. Will help understand the data b4 the analysis, etc.
 
 
 2 - set up db
